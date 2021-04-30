@@ -1,4 +1,4 @@
-# Objection_detection_hand_written
+# Objection_detection_hand_written_Digit
 
 I have created a object detection model with hand written digits (70 * 70) pixels dataset.
 
