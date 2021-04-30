@@ -4,5 +4,5 @@
 ''''''''''''''''''''''''''''''
 
 Tenosrflow API
-Tnsorflow Data_generator
+Tensorflow Data_generator
 Pandas
