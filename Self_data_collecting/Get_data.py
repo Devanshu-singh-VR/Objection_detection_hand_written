@@ -33,5 +33,6 @@ for i in range(length):
 data = {"image_path": image_path, 'label': label, 'x_mark': x_coord, "y_mark": y_coord, 'width': width, "height": height}
 
 frame = pd.DataFrame(data)
-frame.to_csv('D:\obj_detection_and_classification\\train.csv', index=False)
+frame.to_csv('PATH', index=False) # Here you have to define the path
+                                  # where you have to store the images dataset
 

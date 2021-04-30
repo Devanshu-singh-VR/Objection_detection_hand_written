@@ -1,7 +1,8 @@
 ''''''''''''''''''''''''''
-     FOR+DATA+SET
+     FOR_DATA_SET
 
 ''''''''''''''''''''''''''
 
-This code will generate data by itself by using tensorflow mnist
-data set and following library.
+This code with generate dataset itself by using ''TensorFlow dataset''
+''OpenCV'', ''Pandas'', ''Numpy'' libraries.
+
