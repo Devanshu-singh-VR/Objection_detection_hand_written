@@ -18,6 +18,8 @@ TensorFlow functional API structure and Deep CNN model for training the model.
 
 
 
+BY: Devanshu Singh
+
 
 
 
