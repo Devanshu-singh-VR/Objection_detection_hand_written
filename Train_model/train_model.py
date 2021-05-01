@@ -23,6 +23,14 @@ train = (
     .batch(batch_size=100)
 )
 
+#Use call back to store every itter weights
+callback = tf.keras.callbacks.ModelCheckpoint(
+    'checkpoint/',
+    save_weights_only=True,
+    monitor='accuracy',
+    save_best_only=True
+)
+
 # Using the functional API
 
 rg = tf.keras.regularizers.l1(0.001)
@@ -31,17 +39,14 @@ input = tf.keras.Input(shape=(75, 75, 1))
 x = tf.keras.layers.Conv2D(32, kernel_size=3, activation='relu', kernel_regularizer=rg)(input)
 x = tf.keras.layers.MaxPooling2D((3,3), strides=(1,1), padding='valid')(x)
 x = tf.keras.layers.BatchNormalization()(x)
-x = tf.keras.layers.Dropout(0.9)(x)
 
 x = tf.keras.layers.Conv2D(64, kernel_size=3, activation='relu', kernel_regularizer=rg)(x)
 x = tf.keras.layers.MaxPooling2D((3,3), strides=(1,1), padding='valid')(x)
 x = tf.keras.layers.BatchNormalization()(x)
-x = tf.keras.layers.Dropout(0.9)(x)
 
 x = tf.keras.layers.Conv2D(128, kernel_size=3, activation='relu', kernel_regularizer=rg)(x)
 x = tf.keras.layers.MaxPooling2D((3,3), strides=(1,1), padding='valid')(x)
 x = tf.keras.layers.BatchNormalization()(x)
-x = tf.keras.layers.Dropout(0.9)(x)
 
 x = tf.keras.layers.Flatten()(x)
 
@@ -52,10 +57,9 @@ output2 = tf.keras.layers.Dense(4, name="coordinates")(x)
 
 model = tf.keras.Model(inputs=input, outputs=[output1, output2])
 
-# Two loss function 
+# Two loss function
 
 model.compile(loss={"label": tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False),"coordinates": 'mean_squared_error'},
               optimizer='adam', metrics=['accuracy'])
 
-model.fit(train, epochs=10, verbose=1)
-
+model.fit(train, epochs=10, verbose=1, callbacks=[callback])
